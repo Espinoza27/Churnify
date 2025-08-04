@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Form = () => {
+const Form = ({ setApiResponse, selectedModel }) => {
   const [formData, setFormData] = useState({
     age: "",
     gender: "",
@@ -18,6 +18,7 @@ const Form = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Form submitted:", formData);
+    console.log("Selected model:", selectedModel);
 
     const URL = "http://localhost:5000/api/submit";
     const options = {
@@ -25,7 +26,10 @@ const Form = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify({
+        ...formData,
+        model: selectedModel,
+      }),
     };
     try {
       const response = await fetch(URL, options);
@@ -33,6 +37,10 @@ const Form = () => {
         const result = await response.json();
         console.log("Backend Response: ", result);
         console.log(response.status);
+
+        // Pass the API response to the parent component
+        setApiResponse(result);
+
         setFormData({
           age: "",
           gender: "",
@@ -121,7 +129,7 @@ const Form = () => {
         </label>
         <input
           id="monthlycharges"
-          type="text"
+          type="number"
           value={formData.monthlycharges}
           onChange={handleChange}
           required
@@ -141,5 +149,3 @@ const Form = () => {
 };
 
 export default Form;
-
-

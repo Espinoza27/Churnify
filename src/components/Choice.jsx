@@ -1,33 +1,70 @@
-import React from 'react'
+import React from "react";
 
-const Choice = () => {
+const Choice = ({ setSelectedModel }) => {
+  const handleModelChange = (e) => {
+    setSelectedModel(e.target.value);
+  };
+
   return (
-    <div className = "max-w-sm mx-auto p-6 rounded-2xl bg-white  shadow-md overflow-hidden space-y-6">
-    <fieldset>
-  <legend>Select Machine Learning Models:</legend>
+    <div className="max-w-sm mx-auto p-6 rounded-2xl bg-white  shadow-md overflow-hidden space-y-6">
+      <fieldset>
+        <legend>Select A Machine Learning Model:</legend>
 
-  <label>
-    <input type="checkbox" name="models" value="logistic_regression" />
-    Logistic Regression
-  </label><br />
+        <label>
+          <input
+            type="radio"
+            name="models"
+            value="logistic_regression"
+            onChange={handleModelChange}
+          />
+          Logistic Regression
+        </label>
+        <br />
 
-  <label>
-    <input type="checkbox" name="models" value="svc" />
-    Support Vector Classifier
-  </label><br />
+        <label>
+          <input
+            type="radio"
+            name="models"
+            value="svc_model"
+            onChange={handleModelChange}
+          />
+          Support Vector Classifier
+        </label>
+        <br />
 
-  <label>
-    <input type="checkbox" name="models" value="dtc" />
-    Decision Tree Classifier
-  </label><br />
+        <label>
+          <input
+            type="radio"
+            name="models"
+            value="dtc_model"
+            onChange={handleModelChange}
+          />
+          Decision Tree Classifier
+        </label>
+        <br />
 
-  <label>
-    <input type="checkbox" name="models" value="rfc" />
-    Random Forest Classifier
-  </label>
-</fieldset>
+        <label>
+          <input
+            type="radio"
+            name="models"
+            value="rfc_model"
+            onChange={handleModelChange}
+          />
+          Random Forest Classifier
+        </label>
+        <br />
+        <label>
+          <input
+            type="radio"
+            name="models"
+            value="knn_model"
+            onChange={handleModelChange}
+          />
+          K-Nearest Neighbors Classifier
+        </label>
+      </fieldset>
     </div>
-  )
-}
+  );
+};
 
-export default Choice
+export default Choice;

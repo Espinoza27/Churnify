@@ -1,10 +1,14 @@
 import "./App.css";
 import Form from "./components/Form.jsx";
 import Header from "./components/Header.jsx";
-import Logs from "./components/Logs.jsx"
-import Choice from "./components/Choice.jsx"
+import Logs from "./components/Logs.jsx";
+import Choice from "./components/Choice.jsx";
+import { useState } from "react";
 
 function App() {
+  const [apiResponse, setApiResponse] = useState([]);
+  const [selectedModel, setSelectedModel] = useState("");
+
   return (
     <>
       <Header />
@@ -19,12 +23,16 @@ function App() {
             </p>
           </div>
 
-          <div className = "flex">
-          <Form />
-          <Logs />
-          <Choice />
+          <div className="flex">
+            <Form
+              setApiResponse={(result) =>
+                setApiResponse((prev) => [...prev, result])
+              }
+              selectedModel={selectedModel}
+            />
+            <Logs apiResponse={apiResponse} />
+            <Choice setSelectedModel={setSelectedModel} />
           </div>
-          
 
           <footer className="mt-12 text-center text-gray-500 text-sm">
             <p>Powered by machine learning algorithms</p>
