@@ -8,8 +8,8 @@ import Dashboard from "./routes/Dashboard";
 function App() {
   return (
     <div>
-      {/* <LandingPage /> */}
-      <SignIn />
+     <LandingPage /> 
+      
       {/* <Dashboard /> */}
     </div>
   );
