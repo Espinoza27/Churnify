@@ -94,75 +94,101 @@ const Form = ({ setApiResponse, selectedModel, setSelectedModel }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="form-container">
-      <div className="form-group">
-        <label htmlFor="age" className="form-label">
-          Age
-        </label>
-        <input
-          id="age"
-          type="number"
-          value={formData.age}
-          onChange={handleChange}
-          required
-          className="form-input flex"
-          placeholder="Enter your age"
-        />
-      </div>
+    <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-6 shadow-2xl">
+      <h2 className="text-2xl font-bold bg-gradient-to-r from-cyan-400 to-indigo-400 bg-clip-text text-transparent mb-6 text-center">
+        Customer Data Input
+      </h2>
 
-      <div className="form-group">
-        <label htmlFor="gender" className="form-label">
-          Gender
-        </label>
-        <select
-          id="gender"
-          value={formData.gender}
-          onChange={handleChange}
-          required
-          className="form-select flex"
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <div>
+          <label
+            htmlFor="age"
+            className="block text-sm font-medium text-gray-300 mb-2"
+          >
+            Age
+          </label>
+          <input
+            id="age"
+            type="number"
+            value={formData.age}
+            onChange={handleChange}
+            required
+            className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent text-white placeholder-gray-400 transition"
+            placeholder="Enter your age"
+          />
+        </div>
+
+        <div>
+          <label
+            htmlFor="gender"
+            className="block text-sm font-medium text-gray-300 mb-2"
+          >
+            Gender
+          </label>
+          <select
+            id="gender"
+            value={formData.gender}
+            onChange={handleChange}
+            required
+            className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent text-white transition"
+          >
+            <option value="" disabled className="text-gray-400">
+              Select Gender
+            </option>
+            <option value="male" className="text-white">
+              Male
+            </option>
+            <option value="female" className="text-white">
+              Female
+            </option>
+          </select>
+        </div>
+
+        <div>
+          <label
+            htmlFor="tenure"
+            className="block text-sm font-medium text-gray-300 mb-2"
+          >
+            Tenure (months)
+          </label>
+          <input
+            id="tenure"
+            type="number"
+            value={formData.tenure}
+            onChange={handleChange}
+            required
+            className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent text-white placeholder-gray-400 transition"
+            placeholder="Enter tenure in months"
+          />
+        </div>
+
+        <div>
+          <label
+            htmlFor="monthlycharges"
+            className="block text-sm font-medium text-gray-300 mb-2"
+          >
+            Monthly Charges ($)
+          </label>
+          <input
+            id="monthlycharges"
+            type="number"
+            value={formData.monthlycharges}
+            onChange={handleChange}
+            required
+            className="w-full px-4 py-3 bg-gray-700/50 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:border-transparent text-white placeholder-gray-400 transition"
+            placeholder="Enter monthly charges"
+          />
+        </div>
+
+        <button
+          type="submit"
+          className="w-full py-3 bg-gradient-to-r from-cyan-400 to-indigo-400 text-black font-semibold rounded-lg hover:from-cyan-300 hover:to-indigo-300 transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+          disabled={!selectedModel}
         >
-          <option value="" disabled className="placeholder">
-            Select Gender
-          </option>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-        </select>
-      </div>
-
-      <div className="form-group">
-        <label htmlFor="tenure" className="form-label">
-          Tenure (months)
-        </label>
-        <input
-          id="tenure"
-          type="number"
-          value={formData.tenure}
-          onChange={handleChange}
-          required
-          className="form-input flex"
-          placeholder="Enter tenure in months"
-        />
-      </div>
-
-      <div className="form-group">
-        <label htmlFor="monthlycharges" className="form-label">
-          Monthly Charges ($)
-        </label>
-        <input
-          id="monthlycharges"
-          type="number"
-          value={formData.monthlycharges}
-          onChange={handleChange}
-          required
-          className="form-input flex"
-          placeholder="Enter monthly charges"
-        />
-      </div>
-
-      <button type="submit" className="submit-button">
-        Submit Prediction
-      </button>
-    </form>
+          {selectedModel ? "Submit Prediction" : "Select a Model First"}
+        </button>
+      </form>
+    </div>
   );
 };
 
