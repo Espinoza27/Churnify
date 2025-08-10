@@ -1,6 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { supabase } from "../supabaseClient";
+import { AuthContext } from "../context/AuthProvider";
 
-const Form = ({ setApiResponse, selectedModel }) => {
+const Form = ({ setApiResponse, selectedModel, setSelectedModel }) => {
+  const auth = useContext(AuthContext);
+  const session = auth.session;
   const [formData, setFormData] = useState({
     age: "",
     gender: "",
@@ -19,6 +23,12 @@ const Form = ({ setApiResponse, selectedModel }) => {
     e.preventDefault();
     console.log("Form submitted:", formData);
     console.log("Selected model:", selectedModel);
+
+    // Check if model is selected
+    if (!selectedModel) {
+      alert("Please select a machine learning model before submitting.");
+      return;
+    }
 
     const URL = "http://localhost:5000/api/submit";
     const options = {
@@ -41,12 +51,38 @@ const Form = ({ setApiResponse, selectedModel }) => {
         // Pass the API response to the parent component
         setApiResponse(result);
 
+        // Save to Supabase in background
+        if (session && session.user) {
+          const savePredictionToSupabase = async () => {
+            try {
+              await supabase.from("prediction_logs").insert({
+                user_id: session.user.id,
+                input_data: result.input,
+                prediction_result: result.prediction,
+                model_used: result.model_used,
+                success: result.success,
+                message: result.message,
+              });
+              console.log("Successfully saved to Supabase");
+            } catch (error) {
+              console.error("Failed to save to Supabase:", error);
+            }
+          };
+          savePredictionToSupabase();
+        }
+
+        // Log the API Response to the server
+        console.log("API Response: ", result);
+
         setFormData({
           age: "",
           gender: "",
           tenure: "",
           monthlycharges: "",
         });
+
+        // Reset selected model
+        setSelectedModel("");
       } else {
         console.error(
           `Error while submitting the form: ${response.statusText}`

@@ -6,6 +6,7 @@ const AuthContext = createContext();
 
 const AuthProvider = ({ component }) => {
   const [session, setSession] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   // SIGN UP
   const signUp = async (email, password) => {
@@ -56,10 +57,12 @@ const AuthProvider = ({ component }) => {
     const fetchSession = async () => {
       const result = await supabase.auth.getSession();
       setSession(result.data.session);
+      setLoading(false);
     };
     fetchSession();
     supabase.auth.onAuthStateChange((event, session) => {
       setSession(session);
+      setLoading(false);
     });
   }, []);
 
@@ -72,6 +75,7 @@ const AuthProvider = ({ component }) => {
         signIn: signIn,
         signOut: signOut,
         session: session,
+        loading: loading,
       }}
     >
       {component}

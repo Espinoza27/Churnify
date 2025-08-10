@@ -1,6 +1,6 @@
 import React from "react";
 
-const Choice = ({ setSelectedModel }) => {
+const Choice = ({ setSelectedModel, selectedModel }) => {
   const handleModelChange = (e) => {
     setSelectedModel(e.target.value);
   };
@@ -18,6 +18,8 @@ const Choice = ({ setSelectedModel }) => {
             name="models"
             value="logistic_regression"
             onChange={handleModelChange}
+            checked={selectedModel === "logistic_regression"}
+            required
           />
           Logistic Regression
         </label>
@@ -29,6 +31,7 @@ const Choice = ({ setSelectedModel }) => {
             name="models"
             value="svc_model"
             onChange={handleModelChange}
+            checked={selectedModel === "svc_model"}
           />
           Support Vector Classifier
         </label>
@@ -40,6 +43,7 @@ const Choice = ({ setSelectedModel }) => {
             name="models"
             value="dtc_model"
             onChange={handleModelChange}
+            checked={selectedModel === "dtc_model"}
           />
           Decision Tree Classifier
         </label>
@@ -51,6 +55,7 @@ const Choice = ({ setSelectedModel }) => {
             name="models"
             value="rfc_model"
             onChange={handleModelChange}
+            checked={selectedModel === "rfc_model"}
           />
           Random Forest Classifier
         </label>
@@ -62,6 +67,7 @@ const Choice = ({ setSelectedModel }) => {
             name="models"
             value="knn_model"
             onChange={handleModelChange}
+            checked={selectedModel === "knn_model"}
           />
           K-Nearest Neighbors Classifier
         </label>
