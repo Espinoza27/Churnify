@@ -6,11 +6,13 @@ const Choice = ({ setSelectedModel }) => {
   };
 
   return (
-    <div className="max-w-sm mx-auto p-6 rounded-2xl bg-white  shadow-md overflow-hidden space-y-6">
-      <fieldset>
-        <legend>Select A Machine Learning Model:</legend>
+    <div className="choice-container">
+      <fieldset className="model-fieldset">
+        <legend className="fieldset-legend">
+          Select A Machine Learning Model:
+        </legend>
 
-        <label>
+        <label className="radio-label">
           <input
             type="radio"
             name="models"
@@ -21,7 +23,7 @@ const Choice = ({ setSelectedModel }) => {
         </label>
         <br />
 
-        <label>
+        <label className="radio-label">
           <input
             type="radio"
             name="models"
@@ -32,7 +34,7 @@ const Choice = ({ setSelectedModel }) => {
         </label>
         <br />
 
-        <label>
+        <label className="radio-label">
           <input
             type="radio"
             name="models"
@@ -43,7 +45,7 @@ const Choice = ({ setSelectedModel }) => {
         </label>
         <br />
 
-        <label>
+        <label className="radio-label">
           <input
             type="radio"
             name="models"
@@ -53,7 +55,8 @@ const Choice = ({ setSelectedModel }) => {
           Random Forest Classifier
         </label>
         <br />
-        <label>
+
+        <label className="radio-label">
           <input
             type="radio"
             name="models"

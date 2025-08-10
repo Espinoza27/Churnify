@@ -58,15 +58,9 @@ const Form = ({ setApiResponse, selectedModel }) => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="max-w-sm mx-auto p-6 rounded-2xl bg-white  shadow-md overflow-hidden space-y-6"
-    >
-      <div className="space-y-2">
-        <label
-          htmlFor="age"
-          className="block text-sm font-medium text-gray-700"
-        >
+    <form onSubmit={handleSubmit} className="form-container">
+      <div className="form-group">
+        <label htmlFor="age" className="form-label">
           Age
         </label>
         <input
@@ -75,16 +69,13 @@ const Form = ({ setApiResponse, selectedModel }) => {
           value={formData.age}
           onChange={handleChange}
           required
-          className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 placeholder-gray-400 text-gray-700 bg-gray-50"
+          className="form-input flex"
           placeholder="Enter your age"
         />
       </div>
 
-      <div className="space-y-2">
-        <label
-          htmlFor="gender"
-          className="block text-sm font-medium text-gray-700"
-        >
+      <div className="form-group">
+        <label htmlFor="gender" className="form-label">
           Gender
         </label>
         <select
@@ -92,9 +83,9 @@ const Form = ({ setApiResponse, selectedModel }) => {
           value={formData.gender}
           onChange={handleChange}
           required
-          className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 text-gray-700 bg-gray-50 appearance-none"
+          className="form-select flex"
         >
-          <option value="" disabled className="text-gray-400">
+          <option value="" disabled className="placeholder">
             Select Gender
           </option>
           <option value="male">Male</option>
@@ -102,11 +93,8 @@ const Form = ({ setApiResponse, selectedModel }) => {
         </select>
       </div>
 
-      <div className="space-y-2">
-        <label
-          htmlFor="tenure"
-          className="block text-sm font-medium text-gray-700"
-        >
+      <div className="form-group">
+        <label htmlFor="tenure" className="form-label">
           Tenure (months)
         </label>
         <input
@@ -115,16 +103,13 @@ const Form = ({ setApiResponse, selectedModel }) => {
           value={formData.tenure}
           onChange={handleChange}
           required
-          className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 placeholder-gray-400 text-gray-700 bg-gray-50"
+          className="form-input flex"
           placeholder="Enter tenure in months"
         />
       </div>
 
-      <div className="space-y-2">
-        <label
-          htmlFor="monthlycharges"
-          className="block text-sm font-medium text-gray-700"
-        >
+      <div className="form-group">
+        <label htmlFor="monthlycharges" className="form-label">
           Monthly Charges ($)
         </label>
         <input
@@ -133,15 +118,12 @@ const Form = ({ setApiResponse, selectedModel }) => {
           value={formData.monthlycharges}
           onChange={handleChange}
           required
-          className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all duration-200 placeholder-gray-400 text-gray-700 bg-gray-50"
+          className="form-input flex"
           placeholder="Enter monthly charges"
         />
       </div>
 
-      <button
-        type="submit"
-        className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-3 px-4 rounded-lg transition duration-200 ease-in-out transform hover:scale-[1.01] focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-      >
+      <button type="submit" className="submit-button">
         Submit Prediction
       </button>
     </form>

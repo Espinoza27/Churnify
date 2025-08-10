@@ -3,21 +3,24 @@ import LogCard from "./LogCard.jsx";
 
 const Logs = ({ apiResponse }) => {
   return (
-    <div className="max-w-sm mx-auto p-6 rounded-2xl bg-white  shadow-md overflow-hidden space-y-6">
-      <h1>Logs</h1>
+    <section className="w-full max-w-5xl mx-auto px-4 py-10">
+      <h1 className="text-3xl font-bold text-center text-zinc-800 dark:text-white mb-8">
+        Prediction Logs
+      </h1>
 
-      {/* Display all API responses as LogCards */}
       {apiResponse && apiResponse.length > 0 ? (
-        apiResponse.map((response, index) => (
-       
-          <LogCard key={index} response={response} />
-        ))
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {apiResponse.map((response, index) => (
+            <LogCard key={index} response={response} />
+          ))}
+        </div>
       ) : (
-        <p className="text-gray-500 text-center">No predictions yet</p>
+        <div className="text-center text-zinc-500 dark:text-zinc-400">
+          <p className="text-lg">No predictions yet.</p>
+        </div>
       )}
-    </div>
+    </section>
   );
 };
 
 export default Logs;
- {/* Probably should rename this to apiResponse and pass that into logcard too */}

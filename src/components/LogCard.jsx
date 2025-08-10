@@ -7,33 +7,29 @@ const LogCard = ({ response }) => {
   const modelUsed = response.model_used || "Unknown";
 
   return (
-    <table className="min-w-full border border-gray-300 rounded-md overflow-hidden shadow-sm text-xs">
-      <thead className="bg-gray-100 text-gray-600">
+    <table className="log-card-table">
+      <thead className="table-header">
         <tr>
-          <th className="px-3 py-2 text-left font-semibold border-b border-gray-300">
-            Input
-          </th>
-          <th className="px-3 py-2 text-left font-semibold border-b border-gray-300">
-            Output
-          </th>
+          <th className="header-cell">Input</th>
+          <th className="header-cell">Output</th>
         </tr>
       </thead>
-      <tbody className="bg-white">
-        <tr className="hover:bg-gray-50 transition-colors">
-          <td className="px-3 py-2 border-b border-gray-200 text-gray-800">
-            <div className="grid grid-cols-2 gap-y-0.5 gap-x-2">
-              <span className="font-medium">Age:</span>
+      <tbody className="table-body">
+        <tr className="table-row">
+          <td className="input-cell">
+            <div className="input-grid">
+              <span className="input-label">Age:</span>
               <span>{inputData.age || "N/A"}</span>
-              <span className="font-medium">Gender:</span>
+              <span className="input-label">Gender:</span>
               <span>{inputData.gender === 0 ? "Male" : "Female"}</span>
-              <span className="font-medium">Tenure:</span>
+              <span className="input-label">Tenure:</span>
               <span>{inputData.tenure || "N/A"}</span>
-              <span className="font-medium">Monthly Cost:</span>
+              <span className="input-label">Monthly Cost:</span>
               <span>${inputData.monthlycharges || "N/A"}</span>
             </div>
           </td>
-          <td className="px-3 py-2 border-b border-gray-200 text-green-700 font-semibold">
-            <div className="space-y-1">
+          <td className="output-cell">
+            <div className="prediction-info">
               <div>
                 {prediction[0] === 0
                   ? "No Churn"
@@ -41,7 +37,7 @@ const LogCard = ({ response }) => {
                   ? "Churn"
                   : "N/A"}
               </div>
-              <div className="text-xs text-gray-500">Model: {modelUsed}</div>
+              <div className="model-info">Model: {modelUsed}</div>
             </div>
           </td>
         </tr>
